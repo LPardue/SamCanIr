@@ -1,0 +1,118 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".SelectCategory" >
+
+    <Button
+        android:id="@+id/tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="ButtonPress"
+        android:text="@string/tv" />
+
+    <Button
+        android:id="@+id/stb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="ButtonPress"
+        android:text="@string/stb" />
+
+    <Button
+        android:id="@+id/dvd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="ButtonPress"
+        android:text="@string/dvd" />
+
+    <Button
+        android:id="@+id/blur"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="ButtonPress"
+        android:text="@string/blur" />
+
+    <Button
+        android:id="@+id/av"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="ButtonPress"
+        android:text="@string/av" />
+
+    <Button
+        android:id="@+id/streamingMP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="ButtonPress"
+        android:text="@string/streamingMP" />
+
+    <Button
+        android:id="@+id/projector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="ButtonPress"
+        android:text="@string/projector" />
+
+    <Button
+        android:id="@+id/dvdHT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="ButtonPress"
+        android:text="@string/dvdHT" />
+
+    <Button
+        android:id="@+id/blurHT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="ButtonPress"
+        android:text="@string/blurHT" />
+
+    <Button
+        android:id="@+id/distribuitor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="ButtonPress"
+        android:text="@string/distribuitor" />
+
+    <Button
+        android:id="@+id/notebook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="ButtonPress"
+        android:text="@string/note" />
+
+    <Button
+        android:id="@+id/universal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="ButtonPress"
+        android:text="@string/universal" />
+
+    <Button
+        android:id="@+id/ac"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="ButtonPress"
+        android:text="@string/ac" />
+
+    <Button
+        android:id="@+id/dvr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="ButtonPress"
+        android:text="@string/dvr" />
+
+    <Button
+        android:id="@+id/camera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="ButtonPress"
+        android:text="@string/camera" />
+
+</LinearLayout>

@@ -1,8 +1,12 @@
 # IrDude
 
-Simple android app to control my HarmonKardon Avr-35 stereo. To support other devices, check http://www.remotecentral.com to get your hex codes. 
+Simple android app to control generic devices, from the database extracted from "samsungir.peel.com".
 
-It makes use of an undocumented Samsung IR API, don't expect this to work with anything else but Samsung galaxy note 10.1.
+It makes use of an undocumented Samsung IR API, don't expect this to work with anything else but Samsung Galaxy note 10.1 and Samsung Galaxy S4s.
+
+To download and generate the controls database, execute assets/extractControls.py, I'm not sure about the legality (and ethical) from downloading this data, so only execute if you are secure about what are you doing. :)
+
+It is extremely buggy, I did not take care on the android yet.
 
 **Serious**, this is very much of a hack and kind of work in progress!! :)
 
@@ -11,9 +15,12 @@ It makes use of an undocumented Samsung IR API, don't expect this to work with a
  * http://www.haxd.me/index.php/2013/03/reversing-samsungs-irdamanager/
  * http://www.remotecentral.com/cgi-bin/codes/harmon_kardon/avr-35/
 
-## Suported Devices
+## Tested Devices
 
-  * Samsung galaxy note 10.1
+  * Samsung Galaxy note 10.1
+  * Samsung Galaxy S4 (I9500)
+  * Samsung Galaxy S4 (I9505)
+  
 
 ## Related
 

@@ -2,5 +2,38 @@
 <resources>
 
     <string name="app_name">IrDude</string>
+    <string name="Power">Power</string>
+    <string name="Mute">Mute</string>
+    <string name="VolM">Vol-</string>
+    <string name="VolP">Vol+</string>
+    <string name="Aux">Aux</string>
+    <string name="Tuner">Tuner</string>
+    <string name="CD">CD</string>
+    <string name="Phono">Phono</string>
+    <string name="chControl">Change Control</string>
+    <string name="title_activity_select_category">SelectCategory</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="tv">TV</string>
+    <string name="stb">STB</string>
+    <string name="dvd">DVD Player</string>
+    <string name="title_activity_select_brand">SelectBrand</string>
+    <string name="search">Search</string>
+    <string name="blur">Bluray Player</string>
+    <string name="av">A/V Receiver</string>
+    <string name="streamingMP">Streaming Media Player</string>
+    <string name="projector">Projector</string>
+    <string name="dvdHT">DVD HT</string>
+    <string name="blurHT">Bluray HT</string>
+    <string name="distribuitor">\?Distibuitor?</string>
+    <string name="note">\?Notebook?</string>
+    <string name="universal">\?Universal?</string>
+    <string name="ac">AC</string>
+    <string name="dvr">DVR</string>
+    <string name="camera">\?Camera?</string>
+    <string name="title_activity_select_control">SelectControl</string>
+    <string name="ChanM">Chan-</string>
+    <string name="ChanP">Chan+</string>
+    <string name="Input">Input</string>
 
 </resources>

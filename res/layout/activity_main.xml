@@ -12,82 +12,90 @@
         android:id="@+id/buttonPower"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="30dp"
         android:onClick="irSend"
-        android:text="Power" />
-
-    <Button
-        android:id="@+id/buttonVolDown"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/buttonPower"
-        android:layout_toLeftOf="@+id/buttonPower"
-        android:layout_marginTop="60dp"
-        android:layout_marginRight="30dp"
-        android:onClick="irSend"
-        android:text="Vol-" />
+        android:text="@string/Power" />
 
     <Button
         android:id="@+id/buttonMute"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/buttonVolDown"
-        android:layout_toRightOf="@+id/buttonVolDown"
-        android:layout_marginRight="30dp"
+        android:layout_alignLeft="@+id/buttonPower"
+        android:layout_below="@+id/buttonPower"
+        android:layout_marginTop="15dp"
         android:onClick="irSend"
-        android:text="Mute" />
+        android:text="@string/Mute" />
+
+    <Button
+        android:id="@+id/buttonVolDown"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/buttonMute"
+        android:layout_below="@+id/buttonMute"
+        android:layout_marginTop="15dp"
+        android:onClick="irSend"
+        android:text="@string/VolM" />
 
     <Button
         android:id="@+id/buttonVolUp"
-        android:layout_width="250dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/buttonMute"
-        android:layout_toRightOf="@+id/buttonMute"
+        android:layout_alignRight="@+id/buttonMute"
+        android:layout_below="@+id/buttonMute"
+        android:layout_marginTop="15dp"
         android:onClick="irSend"
-        android:text="Vol+" />
-
+        android:text="@string/VolP" />
 
     <Button
-        android:id="@+id/buttonTuner"
-        android:layout_width="180dp"
+        android:id="@+id/buttonChnP"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/buttonVolDown"
+        android:layout_alignLeft="@+id/buttonVolUp"
+        android:layout_below="@+id/buttonVolUp"
+        android:layout_marginTop="15dp"
+        android:onClick="irSend"
+        android:text="@string/ChanP" />
+
+    <Button
+        android:id="@+id/buttonInput"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/buttonChnP"
+        android:layout_below="@+id/buttonChnP"
+        android:layout_marginTop="15dp"
+        android:onClick="irSend"
+        android:text="@string/Input" />
+
+    <Button
+        android:id="@+id/buttonChnM"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/buttonVolDown"
-        android:layout_marginTop="60dp"
-        android:layout_marginRight="30dp"
+        android:layout_below="@+id/buttonVolDown"
+        android:layout_marginTop="15dp"
         android:onClick="irSend"
-        android:text="Tuner" />
-
-    <Button
-        android:id="@+id/buttonPhono"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/buttonTuner"
-        android:layout_toRightOf="@+id/buttonTuner"
-        android:layout_marginRight="30dp"
-        android:onClick="irSend"
-        android:text="Phono" />
-
-    <Button
-        android:id="@+id/buttonAux"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/buttonPhono"
-        android:layout_toRightOf="@+id/buttonPhono"
-        android:layout_marginRight="30dp"
-        android:onClick="irSend"
-        android:text="Aux" />
+        android:text="@string/ChanM" />
 
     <Button
         android:id="@+id/buttonCD"
-        android:layout_width="180dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/buttonAux"
-        android:layout_toRightOf="@+id/buttonAux"
+        android:layout_alignLeft="@+id/buttonChnM"
+        android:layout_below="@+id/buttonChnM"
+        android:layout_marginTop="15dp"
         android:onClick="irSend"
-        android:text="CD" />
+        android:text="@string/CD" />
 
+    <Button
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/buttonCD"
+        android:layout_alignRight="@+id/buttonInput"
+        android:layout_below="@+id/buttonCD"
+        android:layout_marginTop="15dp"
+        android:onClick="changeControl"
+        android:text="@string/chControl" />
 
 </RelativeLayout>
