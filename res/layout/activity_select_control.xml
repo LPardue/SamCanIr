@@ -1,6 +1,6 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/LinearLayout1"
+    android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -13,7 +13,28 @@
     <ListView
         android:id="@+id/ListControls"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+        android:layout_height="264dp"
+        android:layout_above="@+id/buttonChsConPower"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true" >
+
     </ListView>
 
-</LinearLayout>
+    <Button
+        android:id="@+id/buttonChsConChose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="@string/choose" />
+
+    <Button
+        android:id="@+id/buttonChsConPower"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/buttonChsConChose"
+        android:text="@string/chsContPower" />
+
+</RelativeLayout>

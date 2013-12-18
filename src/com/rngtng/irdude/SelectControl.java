@@ -2,6 +2,7 @@ package com.rngtng.irdude;
 
 import java.util.List;
 
+import com.rngtng.irdude.database.Command;
 import com.rngtng.irdude.database.Control;
 
 import android.os.Bundle;
@@ -11,8 +12,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.support.v4.app.NavUtils;
@@ -22,11 +25,15 @@ public class SelectControl extends Activity {
 	private int brand;
 	private ArrayAdapter<Control> listed;
 	private ListView listView;
+	private Control selected=null;
+	private IrControl ir;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_select_control);
+		
+		ir=new IrControl(this.getSystemService("irda"));
 		
 		Bundle extras=getIntent().getExtras();		
 		category=extras.getInt("category");
@@ -55,21 +62,43 @@ public class SelectControl extends Activity {
 		listView.setAdapter(listed);
 		listView.setOnItemClickListener(new OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {            	
-            	Control selectedControl=listed.getItem(position);            	
-	            Intent resultData = new Intent();
-            	resultData.putExtra("control", selectedControl.id);
-            	setResult(Activity.RESULT_OK, resultData);
-            	finish();
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) { 
+            	selected=listed.getItem(position);
             }
 		});
+		
+		
+		//set OnClick on XML file don't work :.(
+		((Button)findViewById(R.id.buttonChsConChose)).setOnClickListener(new OnClickListener() {			
+			public void onClick(View v) {
+				if( selected == null )
+					return;
+	            Intent resultData = new Intent();
+	        	resultData.putExtra("control", selected.id);
+	        	setResult(Activity.RESULT_OK, resultData);
+	        	finish();
+			}
+		});
+		
+		((Button)findViewById(R.id.buttonChsConPower)).setOnClickListener(new OnClickListener() {			
+			public void onClick(View v) {
+				if( selected == null )
+					return;
+				Command command=MainActivity.bd.getCommand(selected.id);
+				try {
+					ir.irSend(IrControl.db2data(command));
+				} catch (Exception e) {
+					Log.e("IrSend", "Send Power Teste");
+				}
+			}
+		});
+		
 	}
 	
 	/**
 	 * Set up the {@link android.app.ActionBar}.
 	 */
 	private void setupActionBar() {
-
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 
 	}

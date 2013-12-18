@@ -35,5 +35,7 @@
     <string name="ChanM">Chan-</string>
     <string name="ChanP">Chan+</string>
     <string name="Input">Input</string>
+    <string name="chsContPower">Send Power Command</string>
+    <string name="choose">Choose</string>
 
 </resources>
