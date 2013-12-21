@@ -1,9 +1,6 @@
 package com.rngtng.irdude;
 
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import com.rngtng.irdude.database.Command;
@@ -20,7 +17,7 @@ public class MainActivity extends Activity {
 	private SparseArray<String> irData;
 	private final int SELECT_CATEGORY_REQUEST = 1; 
 	public static RemotesDatabase bd;
-	public static final boolean DEBUG = false;
+	public static final boolean DEBUG = true;
 	private IrControl ir;
 	
 	@Override

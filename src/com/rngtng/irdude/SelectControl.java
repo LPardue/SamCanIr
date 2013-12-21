@@ -3,7 +3,7 @@ package com.rngtng.irdude;
 import java.util.List;
 
 import com.rngtng.irdude.database.Command;
-import com.rngtng.irdude.database.Control;
+import com.rngtng.irdude.database.ControlAndPower;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -23,9 +23,9 @@ import android.support.v4.app.NavUtils;
 public class SelectControl extends Activity {
 	private int category;
 	private int brand;
-	private ArrayAdapter<Control> listed;
+	private ArrayAdapter<ControlAndPower> listed;
 	private ListView listView;
-	private Control selected=null;
+	private ControlAndPower selected=null;
 	private IrControl ir;
 	
 	@Override
@@ -49,15 +49,15 @@ public class SelectControl extends Activity {
 	private void populateList(){
 		listView=(ListView)findViewById(R.id.ListControls);
 		
-		List <Control> brands=MainActivity.bd.getControls(category,brand);
+		List <ControlAndPower> controls=MainActivity.bd.getControlsAndPower(category,brand);
 		
-		if(brands==null){
+		if(controls==null){
 			Intent resultData = new Intent();
         	setResult(Activity.RESULT_CANCELED, resultData);
         	finish();
 		}
 		
-		listed = new ArrayAdapter<Control>(this, android.R.layout.simple_list_item_1,brands);
+		listed = new ArrayAdapter<ControlAndPower>(this, android.R.layout.simple_list_item_1,controls);
 		
 		listView.setAdapter(listed);
 		listView.setOnItemClickListener(new OnItemClickListener() {
@@ -84,7 +84,7 @@ public class SelectControl extends Activity {
 			public void onClick(View v) {
 				if( selected == null )
 					return;
-				Command command=MainActivity.bd.getCommand(selected.id);
+				Command command=selected.power;
 				try {
 					ir.irSend(IrControl.db2data(command));
 				} catch (Exception e) {

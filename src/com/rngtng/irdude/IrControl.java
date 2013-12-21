@@ -6,7 +6,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import android.util.Log;
+
 import com.rngtng.irdude.database.Command;
+
+
 
 public class IrControl {
 	private Object irdaService;
@@ -25,10 +29,44 @@ public class IrControl {
 		}
 	}
 	
+	public class InvokeIr extends Thread{
+		
+		private Method irWrite;
+		private String data;
+		private Object irdaService;
+		
+		public InvokeIr(Method irWrite,Object irdaService,String data){
+			this.irWrite=irWrite;
+			this.data=data;
+			this.irdaService=irdaService;
+		}
+		
+	    public void run() {
+	    	try {
+				irWrite.invoke(irdaService, data);
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    }
+	}
+	
 	public void irSend(String data) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException {		
-		if( MainActivity.DEBUG )
+		if( MainActivity.DEBUG){
+			Log.d("IrControl", "Sending data: "+data);
+			return;	
+		}
+		if(data == null){
+			Log.e("IrControl", "Data NULL");
 			return;
-		irWrite.invoke(irdaService, data);
+		}
+		(new InvokeIr(irWrite,irdaService,data)).start();		
 	}
 	
 	public static String db2data(Command command){
@@ -43,43 +81,41 @@ public class IrControl {
 			String toggleframe3,String toggleframe4,
 			String endframe){		
 		
-	    String str1=String.valueOf(frequency);
-	    if( desType.equalsIgnoreCase("Toggle") ) //Full_Repeat and Partial_Repeat?
-	    	str1 += "," + toggleframe1;
-	    while (repeatCount > 0){
-	      StringBuilder localStringBuilder = new StringBuilder(str1);
-	      if (repeatframe != null && repeatframe.length() > 0){
-	        for (int k = 0; k < repeatCount; k++)
-	          localStringBuilder.append(",").append(repeatframe);
-	        str1 = mainframe;
-	      }else{
-	        for (int j = 1; j < repeatCount; j++)
-	          localStringBuilder.append(",").append(str1);
-	        return localStringBuilder.toString().replace(' ', ',');
-	      }
-	    }
-	    return str1.replace(' ', ',');
-	}
-	
-	public static String hex2dec(String irData) {
-		List<String> list = new ArrayList<String>(Arrays.asList(irData
-				.split(" ")));
-		list.remove(0); // dummy
-		int frequency = Integer.parseInt(list.remove(0), 16); // frequency
-		list.remove(0); // seq1
-		list.remove(0); // seq2
-	
-		for (int i = 0; i < list.size(); i++) {
-			list.set(i, Integer.toString(Integer.parseInt(list.get(i), 16)));
+		/*
+		 * Dont have in DB: toggleframe3, toggleframe4 and endframe ( always null )
+		 * desType = "Toggle" //toggleframe1 optional, toggleframe2 optional and mainframe optional, have at least 1
+		 * desType = "Full_Repeat" //mainframe have (if not ERROR), toggleframe1 and toggleframe2 optional (1 case ,apparently error, IGNORE), repeatframe optional
+		 * desType = "Partial_Repeat" //mainframe have (if not ERROR), repeatframe optional
+		 */
+				
+		StringBuilder localStringBuilder = new StringBuilder(String.valueOf(frequency));
+		
+		if( desType.equalsIgnoreCase("Toggle") ){
+			String repeat=null;
+			boolean frame1 = toggleframe1 != null && toggleframe1.length() > 0, frame2 = toggleframe2 != null && toggleframe2.length() > 0;
+			if( frame1 || frame2 ){
+				repeat="";
+				if( frame1 )
+					repeat+=","+toggleframe1;
+				if( frame2 )
+					repeat+=","+toggleframe2;
+				for(int i=0;i<repeatCount;i++)
+					localStringBuilder.append(","+repeat);
+			}			
+			if( mainframe != null && mainframe.length() > 0 )
+				localStringBuilder.append(","+mainframe);
+		}else if(desType.equalsIgnoreCase("Full_Repeat") || desType.equalsIgnoreCase("Partial_Repeat")){
+			if( mainframe == null )
+				return null;
+			if( repeatframe != null && repeatframe.length() > 0 )
+				for(int i=0;i<repeatCount;i++)
+					localStringBuilder.append(","+repeatframe);
+			
+			localStringBuilder.append(","+mainframe);
+		}else{
+			return null;
 		}
-	
-		frequency = (int) (1000000 / (frequency * 0.241246));
-		list.add(0, Integer.toString(frequency));
-	
-		irData = "";
-		for (String s : list) {
-			irData += s + ",";
-		}
-		return irData;
+					
+	    return localStringBuilder.toString().replace(' ', ',');
 	}
 }

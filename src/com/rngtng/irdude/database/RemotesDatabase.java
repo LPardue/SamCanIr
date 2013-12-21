@@ -12,12 +12,14 @@ import android.util.Log;
 public class RemotesDatabase {
 	private DatabaseHelper db;
 	private final String brandTable="brand";
+	//private final String brandTableAbrev="BR";
 	private final String brandColumnId="_id";
 	private final String brandColumnIdOri="oriId";
 	private final String brandColumnName="name";
 	private final String[] brandColumns={brandColumnId,brandColumnIdOri,brandColumnName};
 
 	private final String controlTable="control";
+	private final String controlTableAbrev="CN";
 	private final String controlColumnId="_id";
 	private final String controlColumnIdOri="oriId";
 	private final String controlColumnIdBrand="idBrand";
@@ -25,6 +27,7 @@ public class RemotesDatabase {
 	private final String[] controlColumns={controlColumnId,controlColumnIdOri,controlColumnIdBrand,controlColumnName};
 	
 	private final String commandTable="command";
+	private final String commandTableAbrev="CM";
 	private final String commandColumnId="_id";
 	private final String commandColumnIdControl="idControl";
 	private final String commandColumnUES="UES";
@@ -222,7 +225,9 @@ public class RemotesDatabase {
 		return ret;
 	}
 	
-	public Command getCommand(int idControl){
+	
+	
+	public Command getCommandPower(int idControl){
 		SQLiteQueryBuilder builder = new SQLiteQueryBuilder();
         builder.setTables(commandTable);
         
@@ -230,6 +235,7 @@ public class RemotesDatabase {
 		String[] selectionArgs = new String[] {String.valueOf(idControl)};
         Cursor cursor = builder.query(db.getReadableDatabase(),
         		commandColumns, where , selectionArgs, null, null, null);
+        
                 
         if (cursor == null) {
             return null;
@@ -300,5 +306,91 @@ public class RemotesDatabase {
 					toggleframe4Value, endframeValue);
 		return ret;
 	}
+	
+	public List<ControlAndPower> getControlsAndPower(int idCategory, int idBrand){
+		//select * from control as CN inner join command as CM where CN._id = CM.idControl and CM.funId = 23 and CN.idBrand = 1 and exists(select * from categoryControl as CC where CC._idCategory = 1 and CC._idControl = CN._id);
+
+		String[] selectionArgs = new String[] {String.valueOf(idBrand),String.valueOf(idCategory)};
+
+        Cursor cursor=db.getReadableDatabase().rawQuery("select "
+        		+controlTableAbrev+"."+controlColumnId+" as "+controlColumnId+","+controlColumnName+","+commandColumnDesType
+        		+","+commandColumnFrequency+","+commandColumnRepeatcount+","+commandColumnMainframe
+        		+","+commandColumnRepeatframe+","+commandColumnToggleframe1+","+commandColumnToggleframe2
+        		+","+commandColumnToggleframe3+","+commandColumnToggleframe4+","+commandColumnEndframe
+        		+" from "+
+        		controlTable+" as "+controlTableAbrev+" inner join "+commandTable+" as "+commandTableAbrev+
+        		" where "+controlTableAbrev+"."+controlColumnId+" = "+commandTableAbrev+"."+commandColumnIdControl+
+        		" and ("+commandTableAbrev+"."+commandColumnFunId+" = 23 or "+commandTableAbrev+"."+commandColumnFunId+" = 332 or "+commandTableAbrev+"."+commandColumnFunId+" = 682) and "
+        		+controlTableAbrev+"."+controlColumnIdBrand+" = ? and"
+        				+ " exists(select * from categoryControl as CC where CC._idCategory = ? and CC._idControl = "+controlTableAbrev+"."+controlColumnId+")"
+        				, selectionArgs);
+        
+        List<ControlAndPower> ret=new LinkedList<ControlAndPower>();
+        
+        if (cursor == null) {
+            return null;
+        } else if (!cursor.moveToFirst()) {
+            cursor.close();
+            return null;
+        }
+        
+        ControlAndPower add;
+        
+        int idIndex=cursor. getColumnIndex(controlColumnId);
+        int nameIndex=cursor.getColumnIndex(controlColumnName);
+        
+        int desTypeIndex=cursor.getColumnIndex(commandColumnDesType);
+        int frequencyIndex=cursor.getColumnIndex(commandColumnFrequency);
+        int repeatcountIndex=cursor.getColumnIndex(commandColumnRepeatcount);
+        int mainframeIndex=cursor.getColumnIndex(commandColumnMainframe);
+        int repeatframeIndex=cursor.getColumnIndex(commandColumnRepeatframe);
+        int toggleframe1Index=cursor.getColumnIndex(commandColumnToggleframe1);
+        int toggleframe2Index=cursor.getColumnIndex(commandColumnToggleframe2);
+        int toggleframe3Index=cursor.getColumnIndex(commandColumnToggleframe3);
+        int toggleframe4Index=cursor.getColumnIndex(commandColumnToggleframe4);
+        int endframeIndex=cursor.getColumnIndex(commandColumnEndframe);
+        
+        int idValue;
+        String nameValue;
+        
+        String desTypeValue;
+        int frequencyValue;
+        int repeatcountValue;
+        String mainframeValue;
+        String repeatframeValue;
+        String toggleframe1Value;
+        String toggleframe2Value;
+        String toggleframe3Value;
+        String toggleframe4Value;
+        String endframeValue;     
+        
+        do{
+			idValue=cursor.getInt(idIndex);
+			nameValue=cursor.getString(nameIndex);
+			
+			desTypeValue=cursor.getString(desTypeIndex);
+			frequencyValue=cursor.getInt(frequencyIndex);
+			repeatcountValue=cursor.getInt(repeatcountIndex);
+			mainframeValue=cursor.getString(mainframeIndex);
+			repeatframeValue=cursor.getString(repeatframeIndex);
+			toggleframe1Value=cursor.getString(toggleframe1Index);
+			toggleframe2Value=cursor.getString(toggleframe2Index);
+			toggleframe3Value=cursor.getString(toggleframe3Index);
+			toggleframe4Value=cursor.getString(toggleframe4Index);
+			endframeValue=cursor.getString(endframeIndex);
+			
+			add=new ControlAndPower(idValue, -1, idBrand,nameValue,
+					new Command(-1, -1, -1, 'N', 
+							-1, null, null, desTypeValue, 
+							frequencyValue, repeatcountValue, mainframeValue, repeatframeValue,
+							toggleframe1Value, toggleframe2Value, toggleframe3Value,
+							toggleframe4Value, endframeValue)
+					);
+			ret.add(add);
+		}while(cursor.moveToNext());
+		cursor.close();
+        return ret;
+	}
+	
 
 }
