@@ -9,6 +9,7 @@ import java.util.List;
 import android.util.Log;
 
 import com.rngtng.irdude.database.Command;
+import com.rngtng.irdude.utils.CommonValues;
 
 
 
@@ -17,7 +18,7 @@ public class IrControl {
 	private Method irWrite;
 	
 	public IrControl(Object irdaService) {
-		if( MainActivity.DEBUG )
+		if( CommonValues.DEBUG )
 			return;
 		this.irdaService=irdaService;
 		Class c = irdaService.getClass();
@@ -58,7 +59,7 @@ public class IrControl {
 	}
 	
 	public void irSend(String data) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException {		
-		if( MainActivity.DEBUG){
+		if( CommonValues.DEBUG){
 			Log.d("IrControl", "Sending data: "+data);
 			return;	
 		}

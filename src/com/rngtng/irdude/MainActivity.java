@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.rngtng.irdude.database.Command;
 import com.rngtng.irdude.database.RemotesDatabase;
+import com.rngtng.irdude.utils.CommonValues;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,7 +18,6 @@ public class MainActivity extends Activity {
 	private SparseArray<String> irData;
 	private final int SELECT_CATEGORY_REQUEST = 1; 
 	public static RemotesDatabase bd;
-	public static final boolean DEBUG = true;
 	private IrControl ir;
 	
 	@Override
@@ -116,7 +116,7 @@ public class MainActivity extends Activity {
 	
 	public void irSend(View view) {
 			String data = irData.get(view.getId());
-			if(DEBUG){
+			if(CommonValues.DEBUG){
 				Log.d("Ir", data);			
 			}else if(data != null) {
 				try {
