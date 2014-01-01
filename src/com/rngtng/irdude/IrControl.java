@@ -91,20 +91,14 @@ public class IrControl {
 				
 		StringBuilder localStringBuilder = new StringBuilder(String.valueOf(frequency));
 		
-		if( desType.equalsIgnoreCase("Toggle") ){
-			String repeat=null;
-			boolean frame1 = toggleframe1 != null && toggleframe1.length() > 0, frame2 = toggleframe2 != null && toggleframe2.length() > 0;
-			if( frame1 || frame2 ){
-				repeat="";
-				if( frame1 )
-					repeat+=","+toggleframe1;
-				if( frame2 )
-					repeat+=","+toggleframe2;
-				for(int i=0;i<repeatCount;i++)
-					localStringBuilder.append(","+repeat);
-			}			
-			if( mainframe != null && mainframe.length() > 0 )
-				localStringBuilder.append(","+mainframe);
+		if( desType.equalsIgnoreCase("Toggle") ){//????? How it work??
+			boolean frame1 = toggleframe1 != null && toggleframe1.length() > 0,
+					frame2 = toggleframe2 != null && toggleframe2.length() > 0;
+			if( frame1 ){
+				localStringBuilder.append(","+toggleframe1);
+			}else if ( frame2 ){
+				localStringBuilder.append(","+toggleframe2);
+			}
 		}else if(desType.equalsIgnoreCase("Full_Repeat") || desType.equalsIgnoreCase("Partial_Repeat")){
 			if( mainframe == null )
 				return null;
