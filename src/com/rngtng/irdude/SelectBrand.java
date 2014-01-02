@@ -10,16 +10,11 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.support.v4.app.NavUtils;
 
 public class SelectBrand extends ListActivity {
 	private int category=-1;
