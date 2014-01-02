@@ -1,12 +1,13 @@
 # IrDude
 
+
 Simple android app to control generic devices, from the database extracted from "samsungir.peel.com".
 
 It makes use of an undocumented Samsung IR API, don't expect this to work with anything else but Samsung Galaxy note 10.1 and Samsung Galaxy S4s.
 
 To download and generate the controls database, execute assets/extractControls.py, I'm not sure about the legality (and ethical) from downloading this data, so only execute if you are secure about what are you doing. :)
 
-It is extremely buggy, I did not take care on the android yet.
+It is extremely buggy, I did not take care of the android development yet.
 
 **Serious**, this is very much of a hack and kind of work in progress!! :)
 
