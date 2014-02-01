@@ -7,6 +7,7 @@
     <uses-sdk
         android:minSdkVersion="16"
         android:targetSdkVersion="17" />
+	<uses-permission android:name="android.permission.TRANSMIT_IR"></uses-permission>
 
     <application
         android:allowBackup="true"
@@ -47,5 +48,4 @@
                 android:value="com.rngtng.irdude.SelectBrand" />
         </activity>
     </application>
-
 </manifest>

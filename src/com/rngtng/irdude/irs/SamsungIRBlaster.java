@@ -1,10 +1,7 @@
-package com.rngtng.irdude;
+package com.rngtng.irdude.irs;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import android.util.Log;
 
@@ -13,11 +10,11 @@ import com.rngtng.irdude.utils.CommonValues;
 
 
 
-public class IrControl {
+public class SamsungIRBlaster implements IRConsumer {
 	private Object irdaService;
 	private Method irWrite;
 	
-	public IrControl(Object irdaService) {
+	public SamsungIRBlaster(Object irdaService) {
 		if( CommonValues.DEBUG )
 			return;
 		this.irdaService=irdaService;
@@ -58,29 +55,25 @@ public class IrControl {
 	    }
 	}
 	
-	public void irSend(String data) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException {		
-		if( CommonValues.DEBUG){
-			Log.d("IrControl", "Sending data: "+data);
-			return;	
-		}
+	private void irSend(String data){
 		if(data == null){
 			Log.e("IrControl", "Data NULL");
 			return;
 		}
-		(new InvokeIr(irWrite,irdaService,data)).start();		
+		(new InvokeIr(irWrite,irdaService,data)).start();
 	}
 	
-	public static String db2data(Command command){
-		return db2data(command.frequency,command.repeatcount,command.desType,command.mainframe,command.repeatframe,
+	public void sendCommand(Command command){
+		sendCommand(command.frequency,command.repeatcount,command.desType,command.mainframe,command.repeatframe,
 				command.toggleframe1,command.toggleframe2,command.toggleframe3,command.toggleframe4,
 				command.endframe);
 	}
 	
-	public static String db2data(int frequency,int repeatCount,String desType,
+	public void sendCommand(int frequency,int repeatCount,String desType,
 			String mainframe,String repeatframe,
 			String toggleframe1,String toggleframe2,
 			String toggleframe3,String toggleframe4,
-			String endframe){		
+			String endframe){
 		
 		/*
 		 * Dont have in DB: toggleframe3, toggleframe4 and endframe ( always null )
@@ -101,16 +94,16 @@ public class IrControl {
 			}
 		}else if(desType.equalsIgnoreCase("Full_Repeat") || desType.equalsIgnoreCase("Partial_Repeat")){
 			if( mainframe == null )
-				return null;
+				return;
 			if( repeatframe != null && repeatframe.length() > 0 )
 				for(int i=0;i<repeatCount;i++)
 					localStringBuilder.append(","+repeatframe);
 			
 			localStringBuilder.append(","+mainframe);
 		}else{
-			return null;
+			return;
 		}
 					
-	    return localStringBuilder.toString().replace(' ', ',');
+		irSend(localStringBuilder.toString().replace(' ', ','));
 	}
 }

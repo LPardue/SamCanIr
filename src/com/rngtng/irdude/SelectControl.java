@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.rngtng.irdude.database.Command;
 import com.rngtng.irdude.database.ControlAndPower;
+import com.rngtng.irdude.irs.IRConsumer;
+import com.rngtng.irdude.irs.IRManager;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -23,14 +25,14 @@ public class SelectControl extends Activity {
 	private ArrayAdapter<ControlAndPower> listed;
 	private ListView listView;
 	private ControlAndPower selected=null;
-	private IrControl ir;
+	private IRConsumer ir;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_select_control);
 		
-		ir=new IrControl(this.getSystemService("irda"));
+		ir = IRManager.getCurrentIRConssumer(this);
 		
 		Bundle extras=getIntent().getExtras();		
 		category=extras.getInt("category");
@@ -80,7 +82,7 @@ public class SelectControl extends Activity {
 					return;
 				Command command=selected.power;
 				try {
-					ir.irSend(IrControl.db2data(command));
+					ir.sendCommand(command);
 				} catch (Exception e) {
 					Log.e("IrSend", "Send Power Teste");
 				}
