@@ -43,35 +43,35 @@ public class MainActivity extends Activity {
 		irData = new SparseArray<Command>();
 		irData.put(
 				R.id.buttonPower,
-				new Command(0, 0, 0, '\0', 0, null, null, "Toggle", 36036, 3, null, null, "96 32 16 32 16 16 16 16 16 32 32 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 32 16 16 32 16 16 16 3036","96 31 16 31 16 16 16 16 47 47 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 31 16 16 31 16 16 16 3043", null, null, null)
+				new Command(0, 0, 0, '\0', 0, null, null, "Toggle", 38028, 1, null, null, "34 29 67 29 34 61 67 29 30 32 30 32 30 32 30 63 30 32 65 30 32 3234",null, null, null, null)
 				);		
 		irData.put(
 				R.id.buttonMute,
-				new Command(0, 0, 0, '\0', 0, null, null,"Full_Repeat",42553,3,"7 118 7 364 7 118 7 364 7 118 7 364 7 118 7 119 7 118 7 241 7 241 7 241 7 241 7 1126",null,null,null,null,null,null)
+				new Command(0, 0, 0, '\0', 0, null, null,"Toggle",38028,1,null, null, "34 29 34 29 67 61 67 29 30 32 30 32 30 32 30 63 30 32 65 63 32 3201",null, null, null, null)
 				);
 		irData.put(
 				R.id.buttonVolDown,
-				new Command(0, 0, 0, '\0', 0, null, null,"Toggle",38461,1,null,null,"32 36 67 35 33 36 33 35 33 36 33 35 33 36 33 35 33 70 33 36 66 36 33 3574","32 36 33 36 66 36 33 35 33 36 33 35 33 36 33 35 33 70 33 36 66 36 33 3574",null,null,null)
+				new Command(0, 0, 0, '\0', 0, null, null,"Toggle",38028,1,null, null, "34 29 34 29 67 61 63 32 30 32 30 32 30 63 65 30 32 30 32 63 32 3201",null, null, null, null)
 				);
 		irData.put(
 				R.id.buttonVolUp,
-				new Command(0, 0, 0, '\0', 0, null, null,"Toggle",36036,3,null,null,"32 32 32 32 64 32 32 32 32 32 32 32 32 32 32 32 32 64 32 32 64 32 32 3261","32 32 64 32 32 32 32 32 32 32 32 32 32 32 32 32 32 64 32 32 64 32 32 3261",null,null,null)
+				new Command(0, 0, 0, '\0', 0, null, null,"Toggle",38028,1,null, null, "34 29 67 29 34 61 63 32 30 32 30 32 30 63 65 30 32 30 32 30 32 3234",null, null, null, null)
 				);
 		irData.put(
 				R.id.buttonChnP,
-				new Command(0, 0, 0, '\0', 0, null, null,"Toggle",38095,3,null,null,"34 34 69 34 34 34 34 34 34 34 34 34 34 34 34 34 34 69 34 34 69 34 34 3533","34 34 34 34 67 34 34 34 34 34 34 34 34 34 34 34 34 67 34 34 67 34 34 3534",null,null,null)
+				new Command(0, 0, 0, '\0', 0, null, null,"Toggle",38028,1,null, null, "34 29 34 29 67 61 63 32 30 32 30 63 65 29 32 30 32 30 32 30 32 3236",null, null, null, null)
 				);
 		irData.put(
 				R.id.buttonInput,
-				new Command(0, 0, 0, '\0', 0, null, null,"Full_Repeat",36000,1,"96 29 17 30 17 14 17 14 17 30 32 14 17 14 17 14 17 14 17 14 17 14 17 14 17 14 17 14 17 14 17 14 17 14 32 14 17 30 17 14 17 3021 96 29 17 30 17 14 17 14 17 30 32 14 17 14 17 14 17 14 17 14 17 14 17 14 17 14 17 14 17 14 17 14 17 14 32 14 17 30 17 14 18 3021 96 29 17 30 17 14 17 14 17 30 32 14 17 14 17 14 17 14 17 14 17 14 17 14 17 14 17 14 17 14 17 14 17 14 32 14 17 30 17 14 17 3587",null,null,null,null,null,null)
+				new Command(0, 0, 0, '\0', 0, null, null,"Toggle",38028,1,null, null, "34 29 34 29 67 61 63 32 30 32 30 32 30 32 32 63 32 30 65 63 32 3201",null, null, null, null)
 				);
 		irData.put(
 				R.id.buttonCD,
-				new Command(0, 0, 0, '\0', 0, null, null,"Toggle",38095,3,null,null,"34 34 34 34 69 34 34 34 34 34 34 34 34 34 34 34 34 69 34 34 69 34 34 3539","34 34 69 34 34 34 34 34 34 34 34 34 34 34 34 34 34 69 34 34 69 34 34 3539",null,null,null)
+				new Command(0, 0, 0, '\0', 0, null, null,"Toggle",38028,1,null, null, "34 29 34 29 67 61 63 32 30 32 30 32 30 32 32 63 32 30 65 63 32 3201",null, null, null, null)
 				);
 		irData.put(
 				R.id.buttonChnM,
-				new Command(0, 0, 0, '\0', 0, null, null,"Toggle",38400,1,null,null,"34 33 35 33 68 33 35 32 35 33 35 32 35 33 35 32 35 67 35 33 68 33 35 3565","34 33 69 32 35 33 35 32 35 33 35 32 35 33 35 32 35 67 35 33 68 33 35 3565",null,null,null)
+				new Command(0, 0, 0, '\0', 0, null, null,"Toggle",38028,1,null, null, "34 29 67 29 34 61 63 32 30 32 30 63 65 30 32 30 32 30 32 63 32 3201",null, null, null, null)
 				);
 
 	
